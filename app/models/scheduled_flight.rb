@@ -1,0 +1,2 @@
+class ScheduledFlight < ApplicationRecord
+end
