@@ -46,3 +46,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+gem 'ransack', '2.1.1' # See https://github.com/activerecord-hackery/ransack/issues/987
+# gem 'ransack', github: 'activerecord-hackery/ransack', branch: '8daa87a0389d380f7c9fd7ea9cb5bda634d5dc7d'
+gem 'simple_form'
+gem 'turbolinks', '~> 5'
+
