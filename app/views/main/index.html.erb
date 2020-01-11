@@ -1,10 +1,47 @@
-<h1>Welcome to Hoot Holiday!</h1>
-<%= form_with url: search_path, local: true, method: :get, html: {class: 'form-inline'} do |form| %>
-  <div class="form-group flights-search mx-auto">
-    <%= form.label :dep, 'Departure:' %>
-    <%= form.text_field :dep, label: 'Departure', placeholder: 'Search', data: {behavior: 'autocomplete'}, class: 'form-control' %>
-    <%= form.label :arr, 'Arrival:' %>
-    <%= form.text_field :arr, label: 'Departure', placeholder: 'Search', data: {behavior: 'autocomplete'}, class: 'form-control' %>
-    <%= form.button 'Search', class: 'form-control' %>
+<div class="container main-container">
+  <h1>Welcome to Hoot Holiday!</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= form_with url: search_path, local: true, method: :get, html: {class: ''} do |form| %>
+
+          <div class="form-group flights-search-form mx-auto">
+            <div class="container">
+              <div class="row d-flex align-items-center">
+                <div class="col-sm-4 text-right">
+                  <%= form.label :dep, 'Departure:' %>
+                </div>
+                <div class="col-sm-8">
+                  <%= form.text_field :dep, label: 'Departure', placeholder: 'Search', data: {behavior: 'autocomplete'}, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="row d-flex align-items-center">
+                <div class="col-sm-4 text-right">
+                  <%= form.label :arr, 'Arrival:' %>
+                </div>
+                <div class="col-sm-8">
+                  <%= form.text_field :arr, label: 'Departure', placeholder: 'Search', data: {behavior: 'autocomplete'}, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="row d-flex align-items-center">
+                <div class="col-sm-4 text-right">
+                </div>
+                <div class="col-sm-8">
+                  <%= form.button 'Search', class: 'btn btn-info form-control ml-0' %>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="col-sm-8">
+        One of three columns
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
