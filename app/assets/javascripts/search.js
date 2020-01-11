@@ -4,7 +4,7 @@ document.addEventListener("turbolinks:load", () => {
     const options = (target) => ({
         getValue: "name",
         url: function (phrase) {
-            return "/search.json?q=" + phrase;
+            return "/auto_complete.json?q=" + phrase;
         },
         categories: [
             {
