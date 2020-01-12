@@ -4,7 +4,7 @@
   </h4>
   <hr>
   <!--  <form>-->
-  <%= form_with model: @passenger, url: passenger_path do |f| %>
+  <%= form_with model: @passenger, url: passenger_path, remote: true do |f| %>
     <div class="form-group">
       <%= f.label :name, 'Full name:' %>
       <%= f.text_field :name, class: "form-control", placeholder: "Passenger's full name as in travel document" %>
@@ -29,8 +29,9 @@
       <%= f.label :phone, 'Contact number:' %>
       <%= f.telephone_field :phone, class: "form-control" %>
     </div>
-  <% end %>
+    <%= f.submit 'Choose Flight', name: 'nav_back', class: 'btn btn-info float-left' %>
+    <%= f.submit 'Checkout', class: 'btn btn-info float-right' %>
+
+<% end %>
   <!--  </form>-->
-  <%= link_to 'Choose Flight', nav_back_path('passenger-details'), method: :post, remote: true, class: 'btn btn-info float-left' %>
-  <%= link_to 'Checkout', search_path, class: 'btn btn-info float-right' %>
 </div>

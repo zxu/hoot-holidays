@@ -5,14 +5,14 @@ class MainController < ApplicationController
   def auto_complete
     #raise 'hell'
     #
-    @airports    = Airport.ransack(iata_code_cont: params[:q]).result(distinct: true)
+    @airports = Airport.ransack(iata_code_cont: params[:q]).result(distinct: true)
     p @airports.last
     #@directors = Director.ransack(name_cont: params[:q]).result(distinct: true)
 
     respond_to do |format|
       format.html {}
       format.json {
-        @airports    = @airports.limit(5)
+        @airports = @airports.limit(5)
       }
     end
   end
@@ -33,15 +33,32 @@ class MainController < ApplicationController
     end
   end
 
-  def passenger
+  def choose_flight
     p params
 
     @passenger = Passenger.new
+    if params[:passenger]
+      Passenger.column_names.each do |col|
+        @passenger.send("#{col}=", params[:passenger][col])
+      end
+    end
     #@passenger.name = 'Tom'
 
     @countries = Country.all
     respond_to do |format|
       format.js
     end
+  end
+
+  def passenger
+    if params[:nav_back]
+      @to_path = 'search-results'
+    else
+      @to_path = 'passenger-details'
+    end
+    respond_to do |format|
+      format.js
+    end
+
   end
 end

@@ -38,9 +38,9 @@ document.addEventListener('ajax:success', function (event) {
     const target = event.target;
     console.log(target.id);
 
-    if (target.id === 'query-form') {
-        sessionStorage.setItem('date', $('#date').val());
-    }
+    // if (target.id === 'query-form') {
+    //     sessionStorage.setItem('date', $('#date').val());
+    // }
 
     console.log(arguments);
 
@@ -55,18 +55,32 @@ document.addEventListener('ajax:beforeSend', function (event) {
 
     const {detail: [, {data}]} = event;
     console.log(data);
-    const params = new URLSearchParams(data);
+    if (data) {
+        const params = new URLSearchParams(data);
+        console.log('Data', params);
 
-    for (const [key, value] of params) {
-        sessionStorage.setItem(key, value);
+        for (const [key, value] of params) {
+            console.log('========', key, value);
+            sessionStorage.setItem(key, value);
+        }
     }
 
-    if (event.target.id === 'query-form') {
-        console.log('Date', params.get('date'));
+    const newParams = new URLSearchParams();
+    for (const key of Object.keys(sessionStorage)) {
+        // console.log('========', key);
+        newParams.append(key, sessionStorage.getItem(key));
+        // sessionStorage.setItem(key, value);
     }
 
-    if (event.target.id === 'flights-form') {
-        console.log('Selected flight', params.get('selected-flight'));
-    }
+    event.detail[1].data = newParams.toString();
+
+
+    // if (event.target.id === 'query-form') {
+    //     console.log('Date', params.get('date'));
+    // }
+    //
+    // if (event.target.id === 'flights-form') {
+    //     console.log('Selected flight', params.get('selected-flight'));
+    // }
 
 });
