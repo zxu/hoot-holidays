@@ -1,3 +1,39 @@
-<h2>
-  <%= @dep %> - <%= @arr %>
-</h2>
+<!--<div class="jumbotron available-flights">-->
+<div class="container available-flights">
+  <h4>
+    <%= @dep_name %> - <%= @arr_name %>
+  </h4>
+  <%= form_tag passenger_path, remote: true, id: 'flights-form' do %>
+    <table class="table table-striped" style="text-align: left">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Carrier</th>
+        <th>Flight No.</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Aircraft</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @flights.each_with_index do |flight, i| %>
+        <tr>
+          <td class="flight-select-radio">
+            <input class="form-check-input" type="radio" name="selected-flight" value="<%= flight.id %>" <%= "checked" if i == 0 %> >
+          </td>
+          <td><%= flight.carrier.name %></td>
+          <td><%= flight.carrier.iata_code %><%= flight.flight_no %></td>
+          <td><%= flight.etd.strftime("%H:%M") %></td>
+          <td><%= flight.eta.strftime("%H:%M") %></td>
+          <td><%= flight.aircraft_type %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%#= @flights.inspect %>
+    <% if @flights.count > 0 %>
+      <%= submit_tag 'Passenger\'s Details', class: 'btn btn-info float-right' %>
+      <%#= link_to 'Traveller Details', passenger_path, remote: true, class: 'btn btn-info float-right' %>
+    <% end %>
+  <% end %>
+</div>

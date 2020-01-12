@@ -16,4 +16,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery.easy-autocomplete
+//= require bootstrap-datepicker
 //= require_tree .

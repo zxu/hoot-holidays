@@ -53,4 +53,5 @@ gem 'ransack', '2.1.1' # See https://github.com/activerecord-hackery/ransack/iss
 # gem 'ransack', github: 'activerecord-hackery/ransack', branch: '8daa87a0389d380f7c9fd7ea9cb5bda634d5dc7d'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
+gem 'bootstrap-datepicker-rails'
 

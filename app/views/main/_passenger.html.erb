@@ -1,0 +1,36 @@
+<div class="container passenger-details">
+  <h4>
+    Passenger Details
+  </h4>
+  <hr>
+  <!--  <form>-->
+  <%= form_with model: @passenger, url: passenger_path do |f| %>
+    <div class="form-group">
+      <%= f.label :name, 'Full name:' %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Passenger's full name as in travel document" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :dob, "Date of birth:" %>
+      <%= f.text_field :dob, class: "form-control", data: {provide: 'datepicker'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :passport_no, 'Travel document number:' %>
+      <%= f.text_field :passport_no, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :passport_country, 'Issued by:' %>
+      <%= f.collection_select :passport_country, @countries, :code, :name, {}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, 'E-mail:' %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone, 'Contact number:' %>
+      <%= f.telephone_field :phone, class: "form-control" %>
+    </div>
+  <% end %>
+  <!--  </form>-->
+  <%= link_to 'Choose Flight', nav_back_path('passenger-details'), method: :post, remote: true, class: 'btn btn-info float-left' %>
+  <%= link_to 'Checkout', search_path, class: 'btn btn-info float-right' %>
+</div>

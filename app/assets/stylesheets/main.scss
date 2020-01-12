@@ -22,4 +22,20 @@
   .eac-item {
     text-align: left;
   }
+
+  .available-flights {
+    td, th {
+      text-align: left;
+    }
+    .flight-select-radio {
+      text-align: right;
+    }
+    .btn {
+      color: white;
+    }
+  }
+
+  .passenger-details {
+    text-align: left;
+  }
 }
