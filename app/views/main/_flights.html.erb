@@ -19,7 +19,7 @@
       <% @flights.each_with_index do |flight, i| %>
         <tr>
           <td class="flight-select-radio">
-            <input class="form-check-input" type="radio" name="selected-flight" value="<%= flight.id %>" <%= "checked" if i == 0 %> >
+            <input type="radio" name="selected-flight" value="<%= flight.id %>" <%= "checked" if i == 0 %> >
           </td>
           <td><%= flight.carrier.name %></td>
           <td><%= flight.carrier.iata_code %><%= flight.flight_no %></td>

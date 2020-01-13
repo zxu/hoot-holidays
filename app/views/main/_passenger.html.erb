@@ -4,34 +4,23 @@
   </h4>
   <hr>
   <!--  <form>-->
-  <%= form_with model: @passenger, url: passenger_path, remote: true do |f| %>
-    <div class="form-group">
-      <%= f.label :name, 'Full name:' %>
-      <%= f.text_field :name, class: "form-control", placeholder: "Passenger's full name as in travel document" %>
+  <%= simple_form_for @passenger, url: passenger_path, remote: true do |f| %>
+    <%= f.input :name, as: :string %>
+    <%= f.input :dob, label: 'Date of birth:', as: :date, start_year: Date.today.year - 100,
+                end_year: Date.today.year - 12 %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :passport_no, label: 'Travel document number:', as: :string %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :passport_country, collection: @countries, label: 'Issued by:' %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.label :dob, "Date of birth:" %>
-      <%= f.text_field :dob, class: "form-control", data: {provide: 'datepicker'} %>
-    </div>
-    <div class="form-group">
-      <%= f.label :passport_no, 'Travel document number:' %>
-      <%= f.text_field :passport_no, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :passport_country, 'Issued by:' %>
-      <%= f.collection_select :passport_country, @countries, :code, :name, {}, {class: "form-control"} %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, 'E-mail:' %>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :phone, 'Contact number:' %>
-      <%= f.telephone_field :phone, class: "form-control" %>
-    </div>
+    <%= f.input :email, label: 'E-mail:', as: :email %>
+    <%= f.input :phone, label: 'Contact number:', as: :tel %>
     <%= f.submit 'Choose Flight', name: 'nav_back', class: 'btn btn-info float-left' %>
     <%= f.submit 'Checkout', class: 'btn btn-info float-right' %>
 
-<% end %>
+  <% end %>
   <!--  </form>-->
 </div>

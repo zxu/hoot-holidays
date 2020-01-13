@@ -29,9 +29,20 @@ class MainController < ApplicationController
   def choose_flight
     @passenger = Passenger.new
     if params[:passenger]
-      Passenger.column_names.each do |col|
-        @passenger.send("#{col}=", params[:passenger][col])
+      Passenger.column_names.sort.each do |col|
+        p col
+        p Passenger.columns_hash[col].type
+        col_type = Passenger.columns_hash[col].type
+        if col_type != :date && col_type != :datetime
+          @passenger.send("#{col}=", params[:passenger][col])
+        else
+          year = params[:passenger]["#{col}(1i)"]
+          month = params[:passenger]["#{col}(2i)"]
+          day = params[:passenger]["#{col}(3i)"]
+          @passenger.send("#{col}=", "#{day}/#{month}/#{year}")
+        end
       end
+      p @passenger.inspect
     end
 
     @countries = Country.all
