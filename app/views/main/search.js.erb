@@ -2,3 +2,26 @@
 $('.right-panes .pane').hide();
 $('#search-results').html("<%= j (render partial: 'flights') %>")
 $('#search-results').show()
+$('#search-results table').unbind();
+$('#search-results table').click(function(event) {
+    console.log('Clicked');
+    console.log(event);
+
+    console.log (event.target.nodeName);
+
+    if (event.target.nodeName === 'TD') {
+//        console.log(this);
+//        console.log($(event.target).parent().children().first().find('input').attr('data-price'));
+        const $checkbox = $(event.target).parent().children().first().find('input');
+//        price = $checkbox.attr('data-price');
+        $checkbox.trigger('click');
+    }
+    if (event.target.nodeName === 'INPUT') {
+        const price = $(event.target).attr('data-price');
+        console.log(price);
+        $('#price').val(price);
+//        $('#price').val(price);
+    }
+
+
+});

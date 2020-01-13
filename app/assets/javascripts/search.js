@@ -22,9 +22,7 @@ document.addEventListener("turbolinks:load", () => {
         const $input = $(element);
         $input.easyAutocomplete(options($input));
     });
-
 });
-
 
 document.addEventListener('ajax:success', function (event) {
     const detail = event.detail;
@@ -35,6 +33,7 @@ document.addEventListener('ajax:success', function (event) {
 
 document.addEventListener('ajax:beforeSend', function (event) {
     const newParams = new URLSearchParams();
+    console.log(event);
     const {detail: [, {data}]} = event;
     if (data) {
         const params = new URLSearchParams(data);

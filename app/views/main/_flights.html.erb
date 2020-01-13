@@ -6,7 +6,8 @@
   <%= form_tag choose_flight_path, remote: true, id: 'flights-form' do %>
     <% @flights.each_with_index do |flight, i| %>
     <% end %>
-    <table class="table table-striped" style="text-align: left">
+    <input type="text" name="price" id="price" hidden>
+    <table class="table">
       <thead>
       <tr class="d-flex">
         <th class="col-1"></th>
@@ -20,16 +21,17 @@
       </thead>
       <tbody>
       <% @flights.each_with_index do |flight, i| %>
+        <% price = number_with_delimiter(sprintf('%.2f', rand(300..2000)), :delimiter => ',') %>
         <tr class="d-flex">
           <td class="flight-select-radio col-1">
-            <input type="radio" name="selected-flight" value="<%= flight.id %>" <%= "checked" if i == 0 %> >
+            <input type="radio" name="selected-flight" value="<%= flight.id %>" data-price="<%= price %>" <%= "checked" if i == 0 %> >
           </td>
           <td class="col-2"><%= flight.carrier.name %></td>
           <td class="col-2"><%= flight.carrier.iata_code %><%= flight.flight_no %></td>
           <td class="col-1"><%= flight.etd.strftime("%H:%M") %></td>
           <td class="col-1"><%= flight.eta.strftime("%H:%M") %></td>
           <td class="col-1"><%= flight.aircraft_type %></td>
-          <td class="col-4"><input type="text" value="$ <%= sprintf('%.2f', rand(300..5000)) %>" class="form-control" disabled></td>
+          <td class="col-4">$ <%= price %></td>
         </tr>
       <% end %>
       </tbody>
