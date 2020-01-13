@@ -1,6 +1,12 @@
 .main-container {
   margin-top: 2em;
 
+  color: rgba(0, 0, 0, 0.7);
+
+  .fa {
+    color: #6d9ed1;
+  }
+
   h1 {
     margin-bottom: 1em;
   }
@@ -35,7 +41,7 @@
     }
   }
 
-  .passenger-details {
+  .passenger-details, .payment-details {
     text-align: left;
   }
 }

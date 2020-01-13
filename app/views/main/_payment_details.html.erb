@@ -1,0 +1,27 @@
+<div class="container payment-details">
+  <h4>
+    Payment Details
+  </h4>
+  <%= fa_icon "cc-visa 3x" %> <%= fa_icon "cc-mastercard 3x" %> <%= fa_icon "cc-amex 3x" %>
+  <hr>
+  <%= simple_form_for @card, url: payment_path, remote: true do |f| %>
+    <%= f.input :holder_name, label: 'Card holder\'s name:' %>
+    <%= f.input :card_number, label: 'Card number:' %>
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :expiry_date, label: 'Expiry date:', start_year: Date.today.year,
+                    end_year: Date.today.year + 5, discard_day: true,
+                    order: [:month, :year] %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :ccv, label: 'CCV:' %>
+      </div>
+    </div>
+
+    <%= f.submit 'Passenger\'s Details', name: 'nav_back', class: 'btn btn-info float-left' %>
+    <%= f.submit '   Book!   ', class: 'btn btn-primary float-right' %>
+
+<% end %>
+</div>

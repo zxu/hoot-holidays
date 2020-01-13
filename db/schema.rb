@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_212333) do
+ActiveRecord::Schema.define(version: 2020_01_13_004853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2020_01_11_212333) do
     t.string "latitude"
     t.string "longitude"
     t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "card_type"
+    t.string "card_number"
+    t.string "holder_name"
+    t.date "expiry_date"
+    t.string "ccv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

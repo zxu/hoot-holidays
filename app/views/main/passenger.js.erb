@@ -1,2 +1,5 @@
 $('.right-panes .pane').hide();
+<% if @to_path == 'payment-details' %>
+  $('#<%= @to_path %>').html("<%= j (render partial: 'payment_details') %>")
+<% end %>
 $('#<%= @to_path %>').show();

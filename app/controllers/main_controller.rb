@@ -27,23 +27,7 @@ class MainController < ApplicationController
   end
 
   def choose_flight
-    @passenger = Passenger.new
-    if params[:passenger]
-      Passenger.column_names.sort.each do |col|
-        p col
-        p Passenger.columns_hash[col].type
-        col_type = Passenger.columns_hash[col].type
-        if col_type != :date && col_type != :datetime
-          @passenger.send("#{col}=", params[:passenger][col])
-        else
-          year = params[:passenger]["#{col}(1i)"]
-          month = params[:passenger]["#{col}(2i)"]
-          day = params[:passenger]["#{col}(3i)"]
-          @passenger.send("#{col}=", "#{day}/#{month}/#{year}")
-        end
-      end
-      p @passenger.inspect
-    end
+    @passenger = populate_record :passenger, Passenger, params
 
     @countries = Country.all
     respond_to do |format|
@@ -52,13 +36,49 @@ class MainController < ApplicationController
   end
 
   def passenger
+    #p params.inspect
     if params[:nav_back]
       @to_path = 'search-results'
     else
-      @to_path = 'passenger-details'
+      @card = Card.new
+      @to_path = 'payment-details'
     end
     respond_to do |format|
       format.js
     end
+  end
+
+  def payment
+    if params[:nav_back]
+      @to_path = 'passenger-details'
+    else
+      @to_path = 'payment-details'
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  private
+
+  def populate_record(model, model_class, params)
+    record = model_class.new
+    if params[model]
+      model_class.column_names.sort.each do |col|
+        p col
+        p model_class.columns_hash[col].type
+        col_type = model_class.columns_hash[col].type
+        if col_type != :date && col_type != :datetime
+          record.send("#{col}=", params[:passenger][col])
+        else
+          year = params[model]["#{col}(1i)"]
+          month = params[model]["#{col}(2i)"]
+          day = params[model]["#{col}(3i)"]
+          record.send("#{col}=", "#{day}/#{month}/#{year}")
+        end
+      end
+      p record.inspect
+    end
+    record
   end
 end
