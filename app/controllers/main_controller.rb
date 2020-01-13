@@ -40,7 +40,8 @@ class MainController < ApplicationController
     if params[:nav_back]
       @to_path = 'search-results'
     else
-      @card = Card.new
+      #@card = Card.new
+      @card = populate_record :card, Card, params
       @to_path = 'payment-details'
     end
     respond_to do |format|
@@ -60,8 +61,11 @@ class MainController < ApplicationController
   end
 
   private
-
   def populate_record(model, model_class, params)
+    p '='*20
+    p model
+    p model_class
+    p params
     record = model_class.new
     if params[model]
       model_class.column_names.sort.each do |col|
@@ -69,7 +73,7 @@ class MainController < ApplicationController
         p model_class.columns_hash[col].type
         col_type = model_class.columns_hash[col].type
         if col_type != :date && col_type != :datetime
-          record.send("#{col}=", params[:passenger][col])
+          record.send("#{col}=", params[model][col])
         else
           year = params[model]["#{col}(1i)"]
           month = params[model]["#{col}(2i)"]

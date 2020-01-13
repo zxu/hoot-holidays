@@ -4,28 +4,32 @@
     <%= @dep_name %> - <%= @arr_name %>
   </h4>
   <%= form_tag choose_flight_path, remote: true, id: 'flights-form' do %>
+    <% @flights.each_with_index do |flight, i| %>
+    <% end %>
     <table class="table table-striped" style="text-align: left">
       <thead>
-      <tr>
-        <th></th>
-        <th>Carrier</th>
-        <th>Flight No.</th>
-        <th>Departure</th>
-        <th>Arrival</th>
-        <th>Aircraft</th>
+      <tr class="d-flex">
+        <th class="col-1"></th>
+        <th class="col-2">Carrier</th>
+        <th class="col-2">Flight No.</th>
+        <th class="col-1">Departure</th>
+        <th class="col-1">Arrival</th>
+        <th class="col-1">Aircraft</th>
+        <th class="col-4">Price</th>
       </tr>
       </thead>
       <tbody>
       <% @flights.each_with_index do |flight, i| %>
-        <tr>
-          <td class="flight-select-radio">
+        <tr class="d-flex">
+          <td class="flight-select-radio col-1">
             <input type="radio" name="selected-flight" value="<%= flight.id %>" <%= "checked" if i == 0 %> >
           </td>
-          <td><%= flight.carrier.name %></td>
-          <td><%= flight.carrier.iata_code %><%= flight.flight_no %></td>
-          <td><%= flight.etd.strftime("%H:%M") %></td>
-          <td><%= flight.eta.strftime("%H:%M") %></td>
-          <td><%= flight.aircraft_type %></td>
+          <td class="col-2"><%= flight.carrier.name %></td>
+          <td class="col-2"><%= flight.carrier.iata_code %><%= flight.flight_no %></td>
+          <td class="col-1"><%= flight.etd.strftime("%H:%M") %></td>
+          <td class="col-1"><%= flight.eta.strftime("%H:%M") %></td>
+          <td class="col-1"><%= flight.aircraft_type %></td>
+          <td class="col-4"><input type="text" value="$ <%= sprintf('%.2f', rand(300..5000)) %>" class="form-control" disabled></td>
         </tr>
       <% end %>
       </tbody>
