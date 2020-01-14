@@ -1,0 +1,30 @@
+<div class="container preview-trip">
+  <h4>Almost there!</h4>
+  <hr>
+  <%= simple_form_for @trip, url: payment_path, remote: true do |f| %>
+    <div class="row">
+      <div class="card col-sm-7">
+        <div class="card-body">
+          <h5 class="card-title"><%= @dep_airport.city %> (<%= @dep_airport.iata_code %>) - <%= @arr_airport.city %>
+            (<%= @arr_airport.iata_code %>)&nbsp;&nbsp;&nbsp;<%= @trip.dep_date %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @flight.carrier.iata_code %><%= @flight.flight_no %> operated
+            by <%= @flight.carrier.name %></h6>
+          <p></p>
+          <p class="card-text">Departure: <strong><%= @flight.etd.strftime("%H:%M") %></strong>&nbsp;&nbsp;&nbsp;Arrival:
+            <strong><%= @flight.eta.strftime("%H:%M") %></strong></p>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="card col-sm-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= @passenger.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @passenger.passport_country %></h6>
+          <p class="card-text">Date of birth: <%= @passenger.dob %></p>
+        </div>
+      </div>
+    </div>
+    <%= f.input :dep_date, as: :hidden %>
+
+    <%= f.submit '   Book!   ', class: 'btn btn-info float-right' %>
+<% end %>
+</div>

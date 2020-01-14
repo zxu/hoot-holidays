@@ -3,6 +3,10 @@
 
   color: rgba(0, 0, 0, 0.7);
 
+  //.card {
+  //  background: #FFF2E0;
+  //}
+
   .fa {
     color: #6d9ed1;
   }
@@ -41,7 +45,14 @@
     }
   }
 
-  .passenger-details, .payment-details {
+  .passenger-details, .payment-details, .preview-trip {
     text-align: left;
+  }
+
+  .preview-trip {
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }

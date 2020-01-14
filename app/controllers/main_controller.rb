@@ -29,7 +29,10 @@ class MainController < ApplicationController
   def choose_flight
     @passenger = populate_record :passenger, Passenger, params
 
-    @countries = Country.all
+    @countries = Country.all.map do |c|
+      [c.name, c.name]
+    end
+
     respond_to do |format|
       format.js
     end
@@ -50,10 +53,23 @@ class MainController < ApplicationController
   end
 
   def payment
+    #binding.pry
     if params[:nav_back]
       @to_path = 'passenger-details'
     else
-      @to_path = 'payment-details'
+      @to_path = 'preview-trip'
+      @flight = ScheduledFlight.find(params['selected-flight'])
+      @trip = Trip.new
+      @trip.dep_date = Date.strptime(params[:date],"%m/%d/%Y")
+      @dep_airport = Airport.find(@flight.from_airport_id)
+      @arr_airport = Airport.find(@flight.to_airport_id)
+      @passenger = populate_record :passenger, Passenger, params
+
+      puts '='*20
+      p @trip
+      p @flight
+      p @passenger
+      puts '='*20
     end
     respond_to do |format|
       format.js

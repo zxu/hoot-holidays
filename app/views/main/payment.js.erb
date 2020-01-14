@@ -1,2 +1,5 @@
 $('.right-panes .pane').hide();
+<% if @to_path == 'preview-trip' %>
+$('#<%= @to_path %>').html("<%= j (render partial: 'preview_trip') %>")
+<% end %>
 $('#<%= @to_path %>').show();
