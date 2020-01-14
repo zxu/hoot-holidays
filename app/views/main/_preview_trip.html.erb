@@ -1,12 +1,12 @@
 <div class="container preview-trip">
   <h4>Almost there!</h4>
   <hr>
-  <%= simple_form_for @trip, url: payment_path, remote: true do |f| %>
+  <%= simple_form_for @trip, url: book_path, remote: true do |f| %>
     <div class="row">
       <div class="card col-sm-7">
         <div class="card-body">
           <h5 class="card-title"><%= @dep_airport.city %> (<%= @dep_airport.iata_code %>) - <%= @arr_airport.city %>
-            (<%= @arr_airport.iata_code %>)&nbsp;&nbsp;&nbsp;<%= @trip.dep_date %></h5>
+            (<%= @arr_airport.iata_code %>) <%= @trip.dep_date %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= @flight.carrier.iata_code %><%= @flight.flight_no %> operated
             by <%= @flight.carrier.name %></h6>
           <p></p>

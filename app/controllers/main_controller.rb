@@ -60,33 +60,34 @@ class MainController < ApplicationController
       @to_path = 'preview-trip'
       @flight = ScheduledFlight.find(params['selected-flight'])
       @trip = Trip.new
-      @trip.dep_date = Date.strptime(params[:date],"%m/%d/%Y")
+      @trip.dep_date = Date.strptime(params[:date], "%m/%d/%Y")
       @dep_airport = Airport.find(@flight.from_airport_id)
       @arr_airport = Airport.find(@flight.to_airport_id)
       @passenger = populate_record :passenger, Passenger, params
 
-      puts '='*20
-      p @trip
-      p @flight
-      p @passenger
-      puts '='*20
     end
     respond_to do |format|
       format.js
     end
   end
 
+  def book
+
+    passenger = Passenger.create passenger_params
+
+    trip = Trip.create dep_date: Date.strptime(params[:date], "%m/%d/%Y"),
+                        passenger_id: passenger.id,
+                        scheduled_flight_id: params["selected-flight"]
+
+    redirect_to trip_path trip.id
+  end
+
   private
+
   def populate_record(model, model_class, params)
-    p '='*20
-    p model
-    p model_class
-    p params
     record = model_class.new
     if params[model]
       model_class.column_names.sort.each do |col|
-        p col
-        p model_class.columns_hash[col].type
         col_type = model_class.columns_hash[col].type
         if col_type != :date && col_type != :datetime
           record.send("#{col}=", params[model][col])
@@ -97,8 +98,11 @@ class MainController < ApplicationController
           record.send("#{col}=", "#{day}/#{month}/#{year}")
         end
       end
-      p record.inspect
     end
     record
+  end
+
+  def passenger_params
+    params.require(:passenger).permit(:name, :email, :dob, :passport_no, :passport_country, :phone)
   end
 end

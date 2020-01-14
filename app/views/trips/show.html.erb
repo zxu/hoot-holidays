@@ -1,0 +1,47 @@
+<div class="container trip-details">
+  <div class="card">
+    <div class="card-body">
+      <% if @trip.scheduled_flight.carrier.logo.present? %>
+        <%= image_tag "logos/#{@trip.scheduled_flight.carrier.logo}", class: 'card-img-top' %>
+      <% end %>
+      <h5 class="card-title">
+        <%= @dep_airport.city %> (<%= @dep_airport.iata_code %>) <%= @trip.scheduled_flight.etd.strftime("%H:%M") %>
+        - <%= @arr_airport.city %> (<%= @arr_airport.iata_code %>
+        ) <%= @trip.scheduled_flight.eta.strftime("%H:%M") %>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @trip.scheduled_flight.carrier.iata_code %><%= @trip.scheduled_flight.flight_no %>
+        operated
+        by <%= @trip.scheduled_flight.carrier.name %> <%= @trip.dep_date %>
+      </h6>
+      <hr>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <div class="container">
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">Passenger name:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.name %></div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">Date of birth:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.dob %></div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">Country:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.passport_country %></div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">Passport no.:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.passport_no %></div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">E-mail:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.email %></div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-6 text-right">Phone:</div>
+            <div class="col-sm-6 text-left"><%= @trip.passenger.phone %></div>
+          </div>
+        </div>
+      </h6>
+    </div>
+  </div>
+</div>
