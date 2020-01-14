@@ -3,6 +3,29 @@
 
   color: rgba(0, 0, 0, 0.7);
 
+  .login-card {
+    width: 30vw;
+
+    margin-top: 6em;
+
+    .card-header {
+      background-image: url(bg-01.jpg);
+      min-height: 179px;
+      opacity: 0.6;
+      text-transform: uppercase;
+    }
+
+    .row {
+      margin-bottom: 0.5em;
+
+      input[type='submit'] {
+        width: 12em;
+        margin-top: 2em;
+        text-transform: uppercase;
+      }
+    }
+  }
+
   //.card {
   //  background: #FFF2E0;
   //}

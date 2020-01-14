@@ -1,0 +1,47 @@
+<div class="container main-container">
+  <div class="container">
+    <div class="card login-card mx-auto">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <%= form_with url: login_path, html: {class: ''} do |form| %>
+          <div class="row">
+            <div class="col-sm-12">
+              <% if flash[:error] %>
+                <!-- Print out any error message for the user -->
+                <br>
+                <strong><%= flash[:error] %></strong>
+                <br>
+              <% end %>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-4 text-right">
+              <%= form.label :email, 'E-mail:' %>
+            </div>
+            <div class="col-sm-6 text-left">
+              <%= form.text_field :email, label: 'E-mail', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-4 text-right">
+              <%= form.label :password, 'Password:' %>
+            </div>
+            <div class="col-sm-6 text-left">
+              <%= form.text_field :password, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-12 text-center">
+              <%= form.submit 'Login', class: 'btn btn-info' %>
+            </div>
+          </div>
+
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<h2>Login</h2>-->
+
