@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'carriers/new'
+  get 'carriers/create'
+  get 'carriers/index'
+  get 'carriers/show'
+  get 'carriers/edit'
+  get 'carriers/update'
+  get 'carriers/destroy'
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'

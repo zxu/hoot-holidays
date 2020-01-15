@@ -78,8 +78,11 @@ class MainController < ApplicationController
     passenger = Passenger.create passenger_params
 
     trip = Trip.create dep_date: Date.strptime(params[:date], "%m/%d/%Y"),
-                        passenger_id: passenger.id,
-                        scheduled_flight_id: params["selected-flight"]
+                       passenger_id: passenger.id,
+                       scheduled_flight_id: params["selected-flight"],
+                       user_id: session[:user_id]
+
+    flash[:booking_result] = @user.errors.full_messages
 
     redirect_to trip_path trip.id
   end

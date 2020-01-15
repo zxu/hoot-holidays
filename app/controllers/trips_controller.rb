@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_action :check_if_logged_in
+
   def show
     @trip = Trip.find params[:id]
     @dep_airport = Airport.find(@trip.scheduled_flight.from_airport_id)
