@@ -1,0 +1,35 @@
+<%= render partial: 'main/nav' %>
+
+<div class="container user-trips">
+  <h3>Bookings by <%= @current_user.name %></h3>
+  <div class="row">
+    <div class="col-lg-12 text-left">
+      <table class="table table-striped">
+        <thead>
+        <tr class="d-flex">
+          <th class="col-1">Date</th>
+          <th class="col-3">From</th>
+          <th class="col-1">Departure</th>
+          <th class="col-3">To</th>
+          <th class="col-1">Arrival</th>
+          <th class="col-3">Flight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @trips.each_with_index do |trip, i| %>
+          <% from_airport = trip.scheduled_flight.from_airport %>
+          <% to_airport = trip.scheduled_flight.to_airport %>
+          <tr class="d-flex">
+            <td class="col-1"><%= trip.dep_date %></td>
+            <td class="col-3"><%= from_airport.name %></td>
+            <td class="col-1"><%= trip.scheduled_flight.etd.strftime("%H:%M") %></td>
+            <td class="col-3"><%= to_airport.name %></td>
+            <td class="col-1"><%= trip.scheduled_flight.eta.strftime("%H:%M") %></td>
+            <td class="col-3"><%= trip.scheduled_flight.carrier.name %> <%= trip.scheduled_flight.carrier.iata_code %><%= trip.scheduled_flight.flight_no %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
