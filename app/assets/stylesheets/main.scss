@@ -1,5 +1,73 @@
+//body {
+//  background-image: url(roman-romanenko-zGrc_XkBhe4-unsplash.jpg);
+//  //min-height: 179px;
+//  opacity: 0.6;
+//}
+
+//html {
+//  //background: url(roman-romanenko-zGrc_XkBhe4-unsplash.jpg) no-repeat center center fixed;
+//  -webkit-background-size: cover;
+//  -moz-background-size: cover;
+//  -o-background-size: cover;
+//  background-size: cover;
+//  //opacity: 0.6;
+//}
+
+//.root-content {
+//  height: 100%;
+//  min-height: 100%;
+//}
+
+
+//.root-content {
+//  //position: fixed;
+//  height: 100%;
+//}
+
+//body {
+//  min-height: 100vh;
+//  display: flex;
+//  flex-direction: column;
+//  margin: 0;
+//}
+
+.root-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  //display: block;
+  //position: relative;
+}
+
+//.main-content::after {
+//  content: "";
+//  background: url(roman-romanenko-zGrc_XkBhe4-unsplash.jpg);
+//  opacity: 0.5;
+//  top: 0;
+//  left: 0;
+//  bottom: 0;
+//  right: 0;
+//  position: absolute;
+//  z-index: -1;
+//}
+
 .main-container {
-  margin-top: 2em;
+
+  .cover-image {
+    max-width:100%;
+    max-height:80vh;
+    object-fit: cover;
+  }
+
+  //position: absolute;
+  //margin-top: 2em;
+
+  padding-top: 2em;
 
   color: rgba(0, 0, 0, 0.7);
 
@@ -79,3 +147,9 @@
     }
   }
 }
+
+//#background-holder {
+//  background: url(roman-romanenko-zGrc_XkBhe4-unsplash.jpg);
+//  background-size: cover;
+//  opacity: 0.5;
+//}

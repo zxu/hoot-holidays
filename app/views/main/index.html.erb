@@ -1,12 +1,12 @@
 <%= render partial: 'nav' %>
 
-<div class="container">
-  <div class="row">
+<div class="container-fluid d-flex h-100 flex-column main-content">
+  <div class="row bg-light flex-fill d-flex h-100 justify-content-start">
     <div class="col-lg-12 text-center">
-      <div class="container main-container">
-        <h1>Welcome to Hoot Holiday!</h1>
-        <div class="container">
-          <div class="row">
+      <div class="container main-container flex-fill d-flex h-100">
+<!--        <h1>Welcome to Hoot Holiday!</h1>-->
+        <div class="container flex-fill d-flex h-100">
+          <div class="row flex-fill d-flex h-100">
             <div class="col-sm-4">
               <%= form_with url: search_path, method: :get, remote: true, html: {class: ''}, id: 'query-form' do |form| %>
 
@@ -53,6 +53,9 @@
 
             </div>
             <div class="col-sm-8 right-panes">
+              <div id="background-holder" class="pane">
+                <%= image_tag "landmark-human-settlement-skyline-for-new-year-5db7ae004e7f88.47665242.png", class: 'cover-image' %>
+              </div>
               <div id="search-results" class="pane"></div>
               <div id="passenger-details" class="pane"></div>
               <div id="payment-details" class="pane"></div>
