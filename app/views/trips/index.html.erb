@@ -20,7 +20,8 @@
           <% from_airport = trip.scheduled_flight.from_airport %>
           <% to_airport = trip.scheduled_flight.to_airport %>
           <tr class="d-flex">
-            <td class="col-1"><%= trip.dep_date %></td>
+<!--            <td class="col-1"><%#= trip.dep_date %></td>-->
+            <td class="col-1"><%= link_to trip.dep_date, trip_path(trip.id) %></td>
             <td class="col-3"><%= from_airport.name %></td>
             <td class="col-1"><%= trip.scheduled_flight.etd.strftime("%H:%M") %></td>
             <td class="col-3"><%= to_airport.name %></td>

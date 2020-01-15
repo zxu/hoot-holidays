@@ -2,6 +2,7 @@ class MainController < ApplicationController
   before_action :check_if_logged_in
 
   def index
+    @path = 'new_booking'
   end
 
   def auto_complete
@@ -87,7 +88,7 @@ class MainController < ApplicationController
       flash[:booking_result] = e
     end
     flash[:booking_result] = 'Successfully booked!'
-
+    @path = 'trips'
     redirect_to trip_path trip.id
   end
 
