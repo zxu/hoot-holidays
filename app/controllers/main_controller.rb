@@ -77,12 +77,16 @@ class MainController < ApplicationController
 
     passenger = Passenger.create passenger_params
 
-    trip = Trip.create dep_date: Date.strptime(params[:date], "%m/%d/%Y"),
-                       passenger_id: passenger.id,
-                       scheduled_flight_id: params["selected-flight"],
-                       user_id: session[:user_id]
+    begin
 
-    flash[:booking_result] = @user.errors.full_messages
+      trip = Trip.create dep_date: Date.strptime(params[:date], "%m/%d/%Y"),
+                         passenger_id: passenger.id,
+                         scheduled_flight_id: params["selected-flight"],
+                         user_id: session[:user_id]
+    rescue Exception => e
+      flash[:booking_result] = e
+    end
+    flash[:booking_result] = 'Successfully booked!'
 
     redirect_to trip_path trip.id
   end

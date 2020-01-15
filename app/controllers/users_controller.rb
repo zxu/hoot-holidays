@@ -16,4 +16,8 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  def map
+    @users = User.select(:name, :latitude, :longitude) # all rows, certain columns
+  end
 end

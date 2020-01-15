@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
+
   resources :carriers
   resources :trips
   resources :users, except: [:index]
+
+  get '/map/map' => 'users#map'
 
   get :auto_complete, controller: :main
   get :search, controller: :main
