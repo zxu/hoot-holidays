@@ -16,12 +16,25 @@ class UsersController < ApplicationController
   end
 
   def show
+    @path = 'profile'
+    @user = User.find(params[:id])
   end
 
   def edit
   end
 
   def update
+    user = User.find params[:id]
+
+    begin
+      user.update user_params
+    rescue Exception => e
+      flash[:profile_message] = e
+    end
+
+    flash[:profile_message] = 'Profile updated successfully.'
+
+    redirect_to user_path(user.id)
   end
 
   def destroy

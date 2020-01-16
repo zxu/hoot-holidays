@@ -1,2 +1,26 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render partial: 'main/nav' %>
+
+<div class="container">
+  <% if flash[:profile_message] %>
+    <div class="row flash-message">
+      <div class="col-lg-12 text-center">
+        <h1><%= flash[:profile_message] %></h1>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container user-details">
+        <%= simple_form_for @user, url: user_path, method: 'put' do |f| %>
+          <%= f.input :name, label: 'Name:', as: :string %>
+          <%= f.input :email, label: 'E-mail:', as: :email %>
+          <%= f.input :password, hint: false, label: 'Password:' %>
+          <%= f.input :password_confirmation, label: 'Password confirmation:' %>
+          <div class="text-center">
+            <%= f.submit '   UPDATE   ', class: 'btn btn-info mx-auto' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

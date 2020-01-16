@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+.nav-item.active {
+  background-color: red;
+}
+
 @media (min-width: 1920px) {
   .container {
     max-width: 1900px;

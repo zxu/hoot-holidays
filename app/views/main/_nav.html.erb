@@ -14,9 +14,11 @@
         <li class="nav-item <%= 'active' if @path == 'trips' %>">
           <a class="nav-link" href="<%= trips_path %>">My Trips</a>
         </li>
-        <li class="nav-item <%= 'active' if @path == 'profile' %>">
-          <a class="nav-link" href="#">Profile</a>
-        </li>
+        <% if @current_user.present? %>
+          <li class="nav-item <%= 'active' if @path == 'profile' %>">
+            <a class="nav-link" href="<%= user_path(@current_user.id) %>">Profile</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <% if @current_user.present? %>
             <%= link_to 'Logout', login_path, method: 'delete', class: "nav-link" %>

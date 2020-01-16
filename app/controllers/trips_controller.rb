@@ -13,4 +13,10 @@ class TripsController < ApplicationController
     @arr_airport = Airport.find(@trip.scheduled_flight.to_airport_id)
     #binding.pry
   end
+
+  def destroy
+    Trip.destroy params[:id]
+
+    redirect_to trips_path
+  end
 end
