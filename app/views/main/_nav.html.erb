@@ -26,7 +26,9 @@
         <% end %>
         <li class="nav-item">
           <% if @current_user.present? %>
-            <%= link_to 'Logout', login_path, method: 'delete', class: "nav-link" %>
+            <%= link_to 'Logout', login_path, method: 'delete', class: "nav-link",
+                        onclick: "sessionStorage.clear();"
+            %>
           <% else %>
             <%= link_to 'Login', login_path, class: "nav-link" %>
           <% end %>

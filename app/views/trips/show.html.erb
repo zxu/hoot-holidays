@@ -14,7 +14,8 @@
         <div class="card">
           <div class="card-body">
             <% if @trip.scheduled_flight.carrier.logo.present? %>
-              <%= image_tag "logos/#{@trip.scheduled_flight.carrier.logo}", class: 'card-img-top' %>
+              <% isURL = @trip.scheduled_flight.carrier.logo =~ /^https?:\/\// ? true : false %>
+              <%= image_tag isURL ? @trip.scheduled_flight.carrier.logo : "logos/#{@trip.scheduled_flight.carrier.logo}", class: 'card-img-top' %>
             <% end %>
             <h5 class="card-title">
               <%= @dep_airport.city %> (<%= @dep_airport.iata_code %>

@@ -11,7 +11,7 @@ class MainController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json {
-        @airports = @airports.limit(5)
+        @airports = @airports.limit(10)
       }
     end
   end
