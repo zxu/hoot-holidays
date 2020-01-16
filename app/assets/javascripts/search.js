@@ -24,16 +24,8 @@ document.addEventListener("turbolinks:load", () => {
     });
 });
 
-document.addEventListener('ajax:success', function (event) {
-    const detail = event.detail;
-    const data = detail[0], status = detail[1], xhr = detail[2];
-
-    const target = event.target;
-});
-
 document.addEventListener('ajax:beforeSend', function (event) {
     const newParams = new URLSearchParams();
-    console.log(event);
     const {detail: [, {data}]} = event;
     if (data) {
         const params = new URLSearchParams(data);
@@ -46,7 +38,6 @@ document.addEventListener('ajax:beforeSend', function (event) {
             }
         }
     }
-
 
     for (const key of Object.keys(sessionStorage)) {
         newParams.append(key, sessionStorage.getItem(key));

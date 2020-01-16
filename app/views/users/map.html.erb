@@ -6,6 +6,7 @@
   #map {
     height: 100vh;
   }
+
   /* Optional: Makes the sample page fill the window. */
   html, body {
     height: 100vh;
@@ -17,37 +18,37 @@
 <div id="map"></div>
 
 <script>
-  const users = <%= @users.to_json.html_safe %>
+    const users = <%= @users.to_json.html_safe %>
 
-    function initMap() {
-        // var myLatLng = {lat: -25.363, lng: 131.044};
+        function initMap() {
+            // var myLatLng = {lat: -25.363, lng: 131.044};
 
-        // Create a bounding box object
-        var bounds = new google.maps.LatLngBounds();
+            // Create a bounding box object
+            var bounds = new google.maps.LatLngBounds();
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            // zoom: 12,
-            // center: {lat: users[users.length - 1].latitude, lng: users[users.length - 1].longitude}
-        });
+            var map = new google.maps.Map(document.getElementById('map'), {
+                // zoom: 12,
+                // center: {lat: users[users.length - 1].latitude, lng: users[users.length - 1].longitude}
+            });
 
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
 
-            if (user.latitude !== null && user.longitude !== null) {
+                if (user.latitude !== null && user.longitude !== null) {
 
-                var marker = new google.maps.Marker({
-                    position: {lat: user.latitude, lng: user.longitude},
-                    map: map,
-                    title: user.name
-                });
+                    var marker = new google.maps.Marker({
+                        position: {lat: user.latitude, lng: user.longitude},
+                        map: map,
+                        title: user.name
+                    });
 
-                // Add the latest marker to the bounding box
-                bounds.extend(marker.position);
+                    // Add the latest marker to the bounding box
+                    bounds.extend(marker.position);
+                }
             }
-        }
 
-        map.fitBounds(bounds); // Make the map fit within the box containing the markers.
-    }
+            map.fitBounds(bounds); // Make the map fit within the box containing the markers.
+        }
 </script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALgqpUH4icbPJ78C6XJc1MTdVsuweyvvM&callback=initMap">

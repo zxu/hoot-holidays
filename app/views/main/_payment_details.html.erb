@@ -8,7 +8,6 @@
     <%= f.input :holder_name, label: 'Card holder\'s name:' %>
     <%= f.input :card_number, label: 'Card number:' %>
 
-
     <div class="row">
       <div class="col-sm-6">
         <%= f.input :expiry_date, label: 'Expiry date:', start_year: Date.today.year,
@@ -16,12 +15,12 @@
                     order: [:month, :year] %>
       </div>
       <div class="col-sm-6">
-        <%= f.input :ccv, label: 'CCV:' %>
+        <%= f.input :ccv, label: 'CVC:' %>
       </div>
     </div>
 
     <%= f.submit 'Passenger\'s Details', name: 'nav_back', class: 'btn btn-info float-left' %>
     <%= f.submit 'Preview Trip', class: 'btn btn-info float-right' %>
 
-<% end %>
+  <% end %>
 </div>

@@ -18,10 +18,8 @@ body {
 .main-container {
 
   .cover-image {
-    max-width:100%;
+    max-width: 100%;
     max-height: calc(100vh - 100px);
-    //object-fit: cover;
-    //overflow: hidden;
   }
 
   padding-top: 2em;
@@ -81,9 +79,11 @@ body {
     td, th {
       text-align: left;
     }
+
     .flight-select-radio {
       text-align: right;
     }
+
     .btn {
       color: white;
     }

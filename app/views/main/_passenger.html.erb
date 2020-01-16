@@ -3,7 +3,6 @@
     Passenger Details
   </h4>
   <hr>
-  <!--  <form>-->
   <%= simple_form_for @passenger, url: passenger_path, remote: true do |f| %>
     <%= f.input :name, as: :string %>
     <%= f.input :dob, label: 'Date of birth:', as: :date, start_year: Date.today.year - 100,
@@ -22,5 +21,4 @@
     <%= f.submit 'Checkout', class: 'btn btn-info float-right' %>
 
   <% end %>
-  <!--  </form>-->
 </div>

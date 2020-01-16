@@ -42,11 +42,9 @@ class MainController < ApplicationController
   end
 
   def passenger
-    #p params.inspect
     if params[:nav_back]
       @to_path = 'search-results'
     else
-      #@card = Card.new
       @card = populate_record :card, Card, params
       @to_path = 'payment-details'
     end
@@ -56,7 +54,6 @@ class MainController < ApplicationController
   end
 
   def payment
-    #binding.pry
     if params[:nav_back]
       @to_path = 'passenger-details'
     else
@@ -67,7 +64,6 @@ class MainController < ApplicationController
       @dep_airport = Airport.find(@flight.from_airport_id)
       @arr_airport = Airport.find(@flight.to_airport_id)
       @passenger = populate_record :passenger, Passenger, params
-
     end
     respond_to do |format|
       format.js
@@ -75,11 +71,9 @@ class MainController < ApplicationController
   end
 
   def book
-
     passenger = Passenger.create passenger_params
 
     begin
-
       trip = Trip.create dep_date: Date.strptime(params[:date], "%m/%d/%Y"),
                          passenger_id: passenger.id,
                          scheduled_flight_id: params["selected-flight"],
