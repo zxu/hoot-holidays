@@ -6,7 +6,7 @@ class MainController < ApplicationController
   end
 
   def auto_complete
-    @airports = Airport.ransack(iata_code_cont: params[:q], name_cont: params[:q], m: 'or').result(distinct: true)
+    @airports = Airport.ransack(iata_code_cont: params[:q], city_cont: params[:q], m: 'or').result(distinct: true)
 
     respond_to do |format|
       format.html {}
