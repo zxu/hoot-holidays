@@ -1,24 +1,11 @@
-# README
+# Background
+This is a Ruby on Rails application. It simulates the flight booking process of an imaginary travel agency called _Hoot Holidays_.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It can be accessed here: https://hoot-holidays.herokuapp.com
 
-Things you may want to cover:
+## Main features
+* A user can search flights between two specified airports on an nominated date and book them.
+* Booked flights can be viewed and cancelled.
+* System administrators can maintain airlines data.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[More contents to be added.]
