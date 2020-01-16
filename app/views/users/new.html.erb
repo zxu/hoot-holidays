@@ -1,2 +1,19 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<%= render partial: 'main/nav' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container user-details">
+        <%= simple_form_for @user, url: users_path do |f| %>
+          <%= f.input :name, label: 'Name:', as: :string %>
+          <%= f.input :email, label: 'E-mail:', as: :email %>
+          <%= f.input :password, hint: false, label: 'Password:' %>
+          <%= f.input :password_confirmation, label: 'Password confirmation:' %>
+          <div class="text-center">
+            <%= f.submit '   SIGN ME UP!   ', class: 'btn btn-info mx-auto' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
