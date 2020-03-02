@@ -1,7 +1,7 @@
 FROM ruby:2.4.1
 RUN apt-get update -qq
 RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sh -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs postgresql-client
 RUN mkdir /myapp
 WORKDIR /myapp
